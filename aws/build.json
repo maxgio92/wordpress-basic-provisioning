@@ -38,7 +38,7 @@
     },
     {
       "type": "file",
-      "source": "src/docker",
+      "source": "../docker",
       "destination": "/mnt/data/projects/{{user `app_name`}}"
     },
     {
