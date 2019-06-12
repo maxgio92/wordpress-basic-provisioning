@@ -33,6 +33,7 @@ resource "aws_instance" "fullstack" {
   vpc_security_group_ids = [
     "${aws_security_group.all_instances.id}",
     "${aws_security_group.web_instances.id}",
+    "${aws_security_group.ftp_instances.id}",
   ]
 
   #subnet_id = "${module.vpc.public_subnet_ids[0]}"
@@ -86,6 +87,36 @@ resource "aws_security_group" "web_instances" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "ftp_instances" {
+  name = "ftp-instances"
+
+  #vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = "${var.vpc_id}"
+
+  ingress {
+    from_port   = 20
+    to_port     = 21
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "FTP active mode ports"
+  }
+
+  ingress {
+    from_port   = 21100
+    to_port     = 21110
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "FTP passive mode ports"
   }
 
   egress {
