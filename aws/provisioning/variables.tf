@@ -8,10 +8,10 @@ variable "env" {
   description = "The environment name. E.g.: 'demo', 'uat', 'staging', 'production', etc."
 }
 
-variable "vpc_cidr" {
-  type        = "string"
-  description = "The CIDR block of the VPC"
-}
+#variable "vpc_cidr" {
+#  type        = "string"
+#  description = "The CIDR block of the VPC"
+#}
 
 variable "public_subnet_count" {
   default     = "2"
