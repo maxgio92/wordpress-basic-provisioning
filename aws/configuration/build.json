@@ -28,17 +28,20 @@
           "volume_type": "gp2",
           "delete_on_termination": true
         }
-      ]
+      ],
+      "tags": {
+        "Name": "{{user `app_name`}}-wordpress-basic"
+      }
     }
   ],
   "provisioners": [
     {
       "type": "shell",
-      "script": "src/provision.sh"
+      "script": "src/configure.sh"
     },
     {
       "type": "file",
-      "source": "../docker",
+      "source": "../../docker",
       "destination": "/mnt/data/projects/{{user `app_name`}}"
     },
     {
