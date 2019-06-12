@@ -11,6 +11,6 @@ Provision the infrastructure.
 
 ```
 export AWS_PROFILE={aws_profile_name}
-terraform workspace select {env}
+terraform workspace new {env}
 terraform apply
 ```
