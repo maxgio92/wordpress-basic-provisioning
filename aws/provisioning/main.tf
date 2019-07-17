@@ -1,13 +1,13 @@
 # VPC
 
-#module "vpc" {
-#  source = "github.com/maxgio92/terraform-aws-vpc"
-#
-#  prefix_name          = "${var.env}"
-#  vpc_cidr             = "${var.vpc_cidr}"
-#  public_subnet_count  = "${var.public_subnet_count}"
-#  private_subnet_count = "${var.private_subnet_count}"
-#}
+module "vpc" {
+  source = "github.com/maxgio92/terraform-aws-vpc"
+
+  prefix_name          = "${var.env}"
+  vpc_cidr             = "${var.vpc_cidr}"
+  public_subnet_count  = "${var.public_subnet_count}"
+  private_subnet_count = "${var.private_subnet_count}"
+}
 
 # AMI
 
@@ -36,8 +36,7 @@ resource "aws_instance" "fullstack" {
     "${aws_security_group.ftp_instances.id}",
   ]
 
-  #subnet_id = "${module.vpc.public_subnet_ids[0]}"
-  subnet_id = "${var.subnet_id}"
+  subnet_id = "${module.vpc.public_subnet_ids[0]}"
 
   tags = {
     Name        = "${var.env}-${var.app_name}-fullstack"
@@ -57,8 +56,7 @@ resource "aws_eip" "fullstack_instance" {
 resource "aws_security_group" "all_instances" {
   name = "all-instances"
 
-  #vpc_id = "${module.vpc.vpc_id}"
-  vpc_id = "${var.vpc_id}"
+  vpc_id = "${module.vpc.vpc_id}"
 
   ingress {
     from_port = 22
@@ -79,8 +77,7 @@ resource "aws_security_group" "all_instances" {
 resource "aws_security_group" "web_instances" {
   name = "web-instances"
 
-  #vpc_id = "${module.vpc.vpc_id}"
-  vpc_id = "${var.vpc_id}"
+  vpc_id = "${module.vpc.vpc_id}"
 
   ingress {
     from_port   = 80
@@ -100,8 +97,7 @@ resource "aws_security_group" "web_instances" {
 resource "aws_security_group" "ftp_instances" {
   name = "ftp-instances"
 
-  #vpc_id = "${module.vpc.vpc_id}"
-  vpc_id = "${var.vpc_id}"
+  vpc_id = "${module.vpc.vpc_id}"
 
   ingress {
     from_port   = 20
