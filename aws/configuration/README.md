@@ -1,3 +1,7 @@
+## Requisites
+
+- Packer
+
 ## Configure
 Build the AWS AMI configured to run basic Wordpress installation.
 For more information on the stack please see ../../docker/.

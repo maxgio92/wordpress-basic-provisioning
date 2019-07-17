@@ -1,3 +1,7 @@
+## Requisites
+
+- Terraform
+
 ## Init
 Create the resources needed to provision and manage the infrastructure via Terraform.
 
