@@ -18,7 +18,7 @@ data "aws_ami" "wordpress_basic" {
 
   filter {
     name   = "tag:Name"
-    values = ["${var.app_name}-wordpress-basic"]
+    values = ["${var.app_name}-${var.env}-wordpress-basic"]
   }
 }
 
