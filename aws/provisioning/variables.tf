@@ -40,3 +40,12 @@ variable "ssh_key_name" {
 variable "ssh_ingress_cidr_block" {
   description = "The CIDR block allowed to access the fullstack instance via SSH"
 }
+
+variable "monitor_ingress_cidr_block" {
+  description = "The CIDR block of the monitor to monitor the fullstack instance"
+}
+
+variable "monitor_ingress_port" {
+  default     = 5666
+  description = "The port to which the monitor communicate to monitor the fullstack instance"
+}
