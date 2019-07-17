@@ -24,6 +24,14 @@ data "aws_ami" "wordpress_basic" {
 
 # Instance
 
+data "template_file" "fullstack_instance_user_data" {
+  template = "${file("aws_instance_fullstack/user_data.bash.tpl")}"
+
+  vars = {
+    app_name = "${var.app_name}"
+  }
+}
+
 resource "aws_instance" "fullstack" {
   ami           = "${data.aws_ami.wordpress_basic.id}"
   instance_type = "${var.instance_type}"
@@ -37,6 +45,8 @@ resource "aws_instance" "fullstack" {
   ]
 
   subnet_id = "${module.vpc.public_subnet_ids[0]}"
+
+  user_data = "${data.template_file.fullstack_instance_user_data.rendered}"
 
   tags = {
     Name        = "${var.env}-${var.app_name}-fullstack"
