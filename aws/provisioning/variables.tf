@@ -8,10 +8,10 @@ variable "env" {
   description = "The environment name. E.g.: 'demo', 'uat', 'staging', 'production', etc."
 }
 
-#variable "vpc_cidr" {
-#  type        = "string"
-#  description = "The CIDR block of the VPC"
-#}
+variable "vpc_cidr" {
+  type        = "string"
+  description = "The CIDR block of the VPC"
+}
 
 variable "public_subnet_count" {
   default     = "2"
@@ -39,12 +39,4 @@ variable "ssh_key_name" {
 
 variable "ssh_ingress_cidr_block" {
   description = "The CIDR block allowed to access the fullstack instance via SSH"
-}
-
-variable "vpc_id" {
-  description = "The ID of the VPC where to provision the fullstack instance"
-}
-
-variable "subnet_id" {
-  description = "The ID of the subnet where to provision the fullstack instance"
 }
