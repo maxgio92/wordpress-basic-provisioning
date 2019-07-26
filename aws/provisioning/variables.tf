@@ -49,3 +49,15 @@ variable "monitor_ingress_port" {
   default     = 5666
   description = "The port to which the monitor communicate to monitor the fullstack instance"
 }
+
+variable "tls_certificate_arn" {
+  description = "The ARN of the certificate to attach to the HTTPS listener of the load balancer"
+}
+
+variable "healthcheck_path" {
+  default = "/"
+}
+
+variable "healthcheck_response_codes" {
+  default = "200-299"
+}
