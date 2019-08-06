@@ -26,25 +26,25 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
     volumes:
-      - "./src:/var/www/html"
+      - "${SRC_PATH}:/var/www/html"
 
   ftp:
     build:
       context: ./vsftpd
       args:
-        - USER_ID=33
-        - GROUP_ID=33
+        - "USER_ID=${SRC_OWNER_UID}"
+        - "GROUP_ID=${SRC_OWNER_GID}"
     ports:
-      - "20:20"
-      - "21:21"
-      - "21100-21110:21100-21110"
+      - "${VSFTPD_HOST_DATA_PORT}:20"
+      - "${VSFTPD_HOST_LISTEN_PORT}:21"
+      - "${VSFTPD_HOST_PASV_DATA_PORT_RANGE}:21100-21110"
     environment:
       FTP_PASS: "${FTP_PASSWORD}"
       FTP_USER: "${COMPOSE_PROJECT_NAME}"
       LOCAL_UMASK: 022
       LOG_STDOUT: "/var/log/vsftpd/vsftpd.log"
     volumes:
-      - "./src:/home/vsftpd/${COMPOSE_PROJECT_NAME}"
+      - "${SRC_PATH}:/home/vsftpd/${COMPOSE_PROJECT_NAME}"
 
 volumes:
     db_data: {}
