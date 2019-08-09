@@ -136,6 +136,14 @@ resource "aws_security_group" "monitored_instances" {
     cidr_blocks = ["${var.monitor_ingress_cidr_block}"]
   }
 
+  ingress {
+    from_port = "-1"
+    to_port   = "-1"
+    protocol  = "icmp"
+
+    cidr_blocks = ["${var.monitor_ingress_cidr_block}"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
