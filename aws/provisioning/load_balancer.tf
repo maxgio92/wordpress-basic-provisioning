@@ -1,5 +1,5 @@
 module "lb" {
-  source = "github.com/maxgio92/terraform-aws-load-balancer"
+  source = "git::https://github.com/maxgio92/terraform-aws-load-balancer.git?ref=1.0.0"
 
   subnet_ids      = "${module.vpc.public_subnet_ids}"
   internal        = false
