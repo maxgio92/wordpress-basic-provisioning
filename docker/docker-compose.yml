@@ -38,6 +38,7 @@ services:
       - "${VSFTPD_HOST_DATA_PORT}:20"
       - "${VSFTPD_HOST_LISTEN_PORT}:21"
       - "${VSFTPD_HOST_PASV_DATA_PORT_RANGE}:21100-21110"
+    restart: unless-stopped
     environment:
       FTP_PASS: "${FTP_PASSWORD}"
       FTP_USER: "${COMPOSE_PROJECT_NAME}"
