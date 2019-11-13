@@ -43,6 +43,8 @@ services:
       FTP_USER: "${COMPOSE_PROJECT_NAME}"
       LOCAL_UMASK: 022
       LOG_STDOUT: "/var/log/vsftpd/vsftpd.log"
+      PASV_ADDRESS: "${VSFTPD_HOST_PASV_ADDRESS}"
+      PASV_ADDR_RESOLVE: "${VSFTPD_HOST_PASV_ADDR_RESOLVE}"
     volumes:
       - "${SRC_PATH}:/home/vsftpd/${COMPOSE_PROJECT_NAME}"
 
