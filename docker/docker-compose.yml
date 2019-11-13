@@ -35,7 +35,6 @@ services:
         - "USER_ID=${SRC_OWNER_UID}"
         - "GROUP_ID=${SRC_OWNER_GID}"
     ports:
-      - "${VSFTPD_HOST_DATA_PORT}:20"
       - "${VSFTPD_HOST_LISTEN_PORT}:21"
       - "${VSFTPD_HOST_PASV_DATA_PORT_RANGE}:21100-21110"
     restart: unless-stopped
